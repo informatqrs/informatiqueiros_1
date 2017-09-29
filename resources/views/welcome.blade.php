@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    INFORMATIQUEIROS IS COMING
                 </div>
 
                 <div class="links">
