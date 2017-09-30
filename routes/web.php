@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("index","ReqController@index");
+Route::get("produtos","ProdutosController@getProdutos");
