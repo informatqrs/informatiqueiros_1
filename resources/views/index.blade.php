@@ -19,32 +19,32 @@
         <ul>
           <li>Vestuário</li>
           <ul>
-            <li><a href="#">Camisas</a></li>
-            <li><a href="#">Calças</a></li>
-            <li><a href="#">Calçados</a></li>
+            <li><a href="vestuario/camisas">Camisas</a></li>
+            <li><a href="vestuario/calcas">Calças</a></li>
+            <li><a href="vestuario/calcados">Calçados</a></li>
           </ul>
           <li>Eletro-eletrônicos</li>
           <ul>
-            <li><a href="#">Câmeras</a></li>
-            <li><a href="#">Computadores Desktop</a></li>
-            <li><a href="#">Notebooks</a></li>
-            <li><a href="#">Smartphones</a></li>
-            <li><a href="#">Drones</a></li>
-            <li><a href="#">Fornos</a></li>
-            <li><a href="#">Cafeteiras</a></li>
-            <li><a href="#">Geladeiras</a></li>
+            <li><a href="eletroeletronicos/cameras">Câmeras</a></li>
+            <li><a href="eletroeletronicos/desktops">Desktops</a></li>
+            <li><a href="eletroeletronicos/notebooks">Notebooks</a></li>
+            <li><a href="eletroeletronicos/smartphones">Smartphones</a></li>
+            <li><a href="eletroeletronicos/drones">Drones</a></li>
+            <li><a href="eletroeletronicos/fornos">Fornos</a></li>
+            <li><a href="eletroeletronicos/cafeteiras">Cafeteiras</a></li>
+            <li><a href="eletroeletronicos/geladeiras">Geladeiras</a></li>
           </ul>
           <li>Ferramentas</li>
           <ul>
-            <li><a href="#">Marcenaria</a></li>
-            <li><a href="#">Alvenaria</a></li>
-            <li><a href="#">Jardinagem</a></li>
+            <li><a href="ferramentas/marcenaria">Marcenaria</a></li>
+            <li><a href="ferramentas/alvenaria">Alvenaria</a></li>
+            <li><a href="ferramentas/jardinagem">Jardinagem</a></li>
           </ul>
           <li>Miscelânia</li>
           <ul>
-            <li><a href="#">Brinquedos</a></li>
-            <li><a href="#">Livros</a></li>
-            <li><a href="#">Decoração</a></li>
+            <li><a href="miscelania/brinquedos">Brinquedos</a></li>
+            <li><a href="miscelania/livros">Livros</a></li>
+            <li><a href="miscelania/decoracao">Decoração</a></li>
           </ul>
         </ul>
       </div>
