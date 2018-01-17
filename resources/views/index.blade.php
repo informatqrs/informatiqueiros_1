@@ -2,7 +2,7 @@
 @section('conteudo')
 @include('nav')
 <div class="row">
-<ul class="list-group col-lg bg-dark p-0 w-100">
+<ul class="list-group col-lg p-0 w-100">
   <a class="list-group-item list-group-item-action rounded-0 pr-0 bg-default" data-toggle="collapse" href="#vestuario">Vestuário</a>
   <div id="vestuario" class="collapse w-100">
       <ul class="list-group">
@@ -88,7 +88,7 @@
 </div>
 
 </div>
-<div class="col-sm bg-success">
+<div class="col-sm">
 
 </div>
 </div>
