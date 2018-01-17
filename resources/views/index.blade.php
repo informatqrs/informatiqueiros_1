@@ -2,45 +2,45 @@
 @section('conteudo')
 @include('nav')
 <div class="row">
-<ul class="list-group col-lg bg-dark">
-  <a class="list-group-item list-group-item-action ml-2 rounded-0" data-toggle="collapse" href="#vestuario">Vestuário</a>
-  <div id="vestuario" class="collapse">
+<ul class="list-group col-lg bg-dark p-0 w-100">
+  <a class="list-group-item list-group-item-action rounded-0 pr-0 bg-default" data-toggle="collapse" href="#vestuario">Vestuário</a>
+  <div id="vestuario" class="collapse w-100">
       <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Brinquedos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5" >Decoração</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Móveis</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Brinquedos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5" >Decoração</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Móveis</a>
       </ul>
   </div>
-  <a class="list-group-item list-group-item-action ml-2 rounded-0" data-toggle="collapse" href="#eletrodomesticos">Eletrodomésticos</a>
+  <a class="list-group-item list-group-item-action rounded-0 bg-default" data-toggle="collapse" href="#eletrodomesticos">Eletrodomésticos</a>
   <div id="eletrodomesticos" class="collapse">
       <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Brinquedos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5" >Decoração</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Móveis</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Brinquedos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5" >Decoração</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Móveis</a>
       </ul>
   </div>
-  <a class="list-group-item list-group-item-action ml-2 rounded-0" data-toggle="collapse" href="#informatica">Informática</a>
+  <a class="list-group-item list-group-item-action rounded-0 bg-default" data-toggle="collapse" href="#informatica">Informática</a>
   <div id="informatica" class="collapse">
       <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Brinquedos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5" >Decoração</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Móveis</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Brinquedos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5" >Decoração</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Móveis</a>
       </ul>
   </div>
-  <a class="list-group-item list-group-item-action ml-2 rounded-0" data-toggle="collapse" href="#ferramentas">Ferramentas</a>
+  <a class="list-group-item list-group-item-action rounded-0 bg-default" data-toggle="collapse" href="#ferramentas">Ferramentas</a>
   <div id="ferramentas" class="collapse">
       <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Brinquedos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5" >Decoração</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Móveis</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Brinquedos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5" >Decoração</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Móveis</a>
       </ul>
   </div>
-  <a class="list-group-item list-group-item-action ml-2 rounded-0" data-toggle="collapse" href="#miscelania">Miscelânia</a>
+  <a class="list-group-item list-group-item-action rounded-0 bg-default" data-toggle="collapse" href="#miscelania">Miscelânia</a>
   <div id="miscelania" class="collapse">
       <ul class="list-group">
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Brinquedos</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5" >Decoração</a>
-        <a href="#" class="list-group-item list-group-item-action bg-secondary rounded-0 py-1 pl-5">Móveis</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Brinquedos</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5" >Decoração</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white rounded-0 py-1 pl-5">Móveis</a>
       </ul>
   </div>
 </ul>
