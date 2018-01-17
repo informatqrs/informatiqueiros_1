@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ViewsController extends Controller
 {
 
   public function admin(){
 
-    return view('admin');
+    if(Auth::check() && Auth::user()->tipo == 1){
+
+      return view('admin.home');
+
+    }else{
+
+      return view('admin');
+
+    }
 
   }
 
