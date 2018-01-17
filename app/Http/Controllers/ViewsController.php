@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class ViewsController extends Controller
 {
+
+  public function admin(){
+
+    return view('admin');
+
+  }
+
   public function getCamisas(){} // devolve tela com todos os produtos do tipo 'camisas'
 
   public function getCalcas(){} // devolve tela com todos os produtos do tipo 'calcas'

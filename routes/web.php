@@ -11,7 +11,7 @@
 |
 */
 
-Route::post('login','LoginController@login')->name('login');
+Route::post('login','Auth\LoginController@login')->name('login');
 
 Route::get('admin','ViewsController@admin')->name('admin');
 
