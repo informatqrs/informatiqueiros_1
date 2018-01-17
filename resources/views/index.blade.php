@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+@extends('master')
+@section('conteudo')
+@include('nav')
     <div class="">
       <table>
         <tr>
@@ -52,5 +48,4 @@
           <h2>Tela de produtos</h2>
       </div>
     </div>
-  </body>
-</html>
+@endsection
