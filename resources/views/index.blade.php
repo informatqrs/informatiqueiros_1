@@ -10,8 +10,8 @@
   <a class="list-group-item list-group-item-action ml-2" href="#">Miscelânia</a>
 </ul>
 </nav>
-<div class="col-sm-8">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div class="col-lg-8">
+  <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -19,13 +19,13 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
-        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+        <img class="d-block img-fluid w-100" src="http://placehold.it/900x350" alt="First slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+        <img class="d-block w-100" src="http://placehold.it/900x350" alt="Second slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+        <img class="d-block img-fluid w-100" src="http://placehold.it/900x350" alt="Third slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -41,13 +41,14 @@
   <!-- ITENS -->
 <div class="row mt-2">
   @for($i = 0; $i < 18; $i++)
-    <div class="card col-4 p-1 m-0">
+  <div class="col-lg-4 mb-2">
+    <div class="card">
       <a><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
       <div class="card-body">
-        <h5>Produto {{$i}} </h5>
+        <h5>Produto {{$i+1}} </h5>
       </div>
     </div>
-
+  </div>
   @endfor
 </div>
 
