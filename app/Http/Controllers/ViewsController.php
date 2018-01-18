@@ -59,5 +59,11 @@ class ViewsController extends Controller
 
   public function comprar(){} // devolve tela de compras
 
-  public function confirmar(){} // processa pedido de confirmação de compra
+  public function confirmar(){  echo "confirmar"; } // processa pedido de confirmação de compra
+
+  public function cadastrar(){
+
+    echo "cadastrar";
+
+  }
 }
