@@ -17,9 +17,11 @@ Route::post('register','Auth\RegisterController@register')->name('register');
 
 Route::post('login','Auth\LoginController@login')->name('login');
 
+Route::get('admin','ViewsController@admin')->middleware('checkUser')->name('admin');
+
 Route::group(['prefix' => 'admin'],function(){
 
-  Route::get('/','ViewsController@admin')->name('admin');
+  Route::get('home','ViewsController@adminHome')->name('admin.home');
   Route::get('pesquisar','ViewsController@adminPesquisar')->name("admin.pesquisar");
   Route::get('editar','ViewsController@adminEditar')->name("admin.editar");
   Route::get('logout','Auth\LoginController@logout')->name("admin.logout");
@@ -29,7 +31,7 @@ Route::group(['prefix' => 'admin'],function(){
 
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->middleware('checkUser')->name('index');
 
 Route::group(['prefix' => 'vestuario'],function(){
 

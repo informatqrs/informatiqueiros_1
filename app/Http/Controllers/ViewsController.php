@@ -11,13 +11,27 @@ class ViewsController extends Controller
 
   public function admin(){
 
+    if(Auth::check()){
+
+      echo "OK";
+
+    }else{
+
+      return view('admin');
+
+    }
+
+  }
+
+  public function adminHome(){
+
     if(Auth::check() && Auth::user()->tipo == 1){
 
       return view('admin.home');
 
     }else{
 
-      return view('admin');
+      return redirect('/');
 
     }
 
