@@ -5,21 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\User;
+use App\Produto;
 
 class ViewsController extends Controller
 {
 
   public function admin(){
 
-    if(Auth::check()){
-
-      echo "OK";
-
-    }else{
-
       return view('admin');
 
-    }
 
   }
 
@@ -27,7 +22,10 @@ class ViewsController extends Controller
 
     if(Auth::check() && Auth::user()->tipo == 1){
 
-      return view('admin.home');
+      $admins = User::where('tipo','=',1)->get();
+      $produtos = Produto::all();
+
+      return view('admin.home',['admins' => $admins, 'produtos' => $produtos]);
 
     }else{
 
