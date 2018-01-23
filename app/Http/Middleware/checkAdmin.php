@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class checkUser
+class checkAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,19 +16,16 @@ class checkUser
     public function handle($request, Closure $next)
     {
 
-        if(Auth::check() && Auth::user()->tipo == 0){
+        if(Auth::check() && Auth::user()->tipo == 1){
 
-          return redirect('index');
-
-        }else if(Auth::check() && Auth::user()->tipo == 1){
-
-          return redirect('admin/home');
+            return redirect()->route('admin.home');
 
         }else{
 
-          return $next($request);
+            return redirect()->route('admin',['aviso' => 'Acesso negado']);
 
         }
 
+        return $next($request);
     }
 }
