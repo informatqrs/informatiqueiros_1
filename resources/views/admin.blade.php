@@ -24,6 +24,11 @@
         @endif
       </div>
     </div>
+    @if(session('aviso') !== NULL)
+        <div class="alert alert-warning">
+          <h3>{{ session('aviso') }}</h3>
+        </div>
+    @endif
   </div>
 
 </div>

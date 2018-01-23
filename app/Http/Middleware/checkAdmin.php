@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class checkAdmin
 {
@@ -22,7 +23,7 @@ class checkAdmin
 
         }else{
 
-            return redirect()->route('admin',['aviso' => 'Acesso negado']);
+            return redirect()->route('admin')->with('aviso','Acesso negado');
 
         }
 

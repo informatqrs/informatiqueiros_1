@@ -23,13 +23,13 @@ class ViewsController extends Controller
 
   public function login(){} // retorna tela de login
 
-  public function compra() // retorna tela de compra
+  public function compra(){} // retorna tela de compra
 
-  public function processarPedido() // processa o pedido e retorna mensagem avisando se ele foi confirmado ou não
+  public function processarPedido(){} // processa o pedido e retorna mensagem avisando se ele foi confirmado ou não
 
   public function cadastro(){} // retorna tela de cadastro
 
   public function recuperarSenha(){} // retorna tela de recuperar senha
 
-    
+
 }

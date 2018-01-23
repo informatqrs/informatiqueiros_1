@@ -11,27 +11,31 @@
 |
 */
 
+Route::group(['prefix' => 'admin'],function(){
+
+  Route::get('home','AdminController@home')->middleware('checkAdmin')->name('admin.home');
+  Route::post('pesquisar','AdminController@pesquisar')->middleware('checkAdmin')->name("admin.pesquisar");
+  Route::get('editar/{$categoria}/{$id}','AdminController@editar')->middleware('checkAdmin')->name("admin.editar");
+  Route::get('cadastrar/{$categoria}/{$id}','AdminController@cadastrar')->middleware('checkAdmin')->name("admin.cadastrar");
+  Route::get('deletar/{$categoria}/{$id}','AdminController@deletar')->middleware('checkAdmin')->name("admin.deletar");
+  Route::post('confirmarCadastro','AdminCOntroller@confirmarCadastro')->middleware('checkAdmin')->name("admin.confirmarCadastro");
+  Route::post('confirmarEdicao','AdminController@confirmarEdicao')->middleware('checkAdmin')->name("admin.confirmarEdicao");
+  Route::post('confirmarDelecao','AdminController@confirmarDelecao')->middleware('checkAdmin')->name("admin.confirmarDelecao");
+  Route::get('logout','Auth\LoginController@logout')->middleware('checkAdmin')->name("admin.logout");
+});
+
+
 Route::get('cadastro','ViewsController@cadastrar')->name('cadastro');
 
 Route::post('register','Auth\RegisterController@register')->name('register');
 
 Route::post('login','Auth\LoginController@login')->name('login');
 
-Route::get('admin','ViewsController@admin')->middleware('checkUser')->name('admin');
-
-Route::group(['prefix' => 'admin'],function(){
-
-  Route::get('home','ViewsController@adminHome')->name('admin.home');
-  Route::get('pesquisar','ViewsController@adminPesquisar')->name("admin.pesquisar");
-  Route::get('editar','ViewsController@adminEditar')->name("admin.editar");
-  Route::get('logout','Auth\LoginController@logout')->name("admin.logout");
-  Route::get('cadastrar','ViewsController@adminCadastrar')->name("admin.cadastrar");
-
-});
+Route::get('admin','AdminController@login')->name('admin');
 
 Route::get('/', function () {
     return view('index');
-})->middleware('checkUser')->name('index');
+})->name('index');
 
 Route::group(['prefix' => 'vestuario'],function(){
 
