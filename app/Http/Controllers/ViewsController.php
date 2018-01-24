@@ -7,29 +7,74 @@ use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Produto;
+use Illuminate\Support\Facades\Session;
 
 class ViewsController extends Controller
 {
 
-  public function home(){} // retorna a página inicial da aplicação
+  public function home(){
 
-  public function getProdutos(){} // retorna produtos da $categoria.
+    $produtos = Produto::all();
 
-  public function getProduto(){} // retorna página do produto com $id
+    return view('index',['produtos' => $produtos]);
 
-  public function addCarrinho(){} // adiciona o produto de $id ao addCarrinho
+  } // retorna a página inicial da aplicação
 
-  public function produto(){} // retorna tela de produto
+  public function getProdutos($categoria){
 
-  public function login(){} // retorna tela de login
+    $produtos = Produto::where('categoria',$categoria)->get();
 
-  public function compra(){} // retorna tela de compra
+    return view('index',['produtos' => $produtos]);
 
-  public function processarPedido(){} // processa o pedido e retorna mensagem avisando se ele foi confirmado ou não
+  } // retorna produtos da $categoria.
 
-  public function cadastro(){} // retorna tela de cadastro
+  public function getProduto($id){
 
-  public function recuperarSenha(){} // retorna tela de recuperar senha
+    $produto = Produto::where('id',$id)->get();
+
+    return view('produto',['produto' => $produto]);
+
+  } // retorna página do produto com $id
+
+  public function addCarrinho($id){
+
+    Session::push('carrinho',$id);
+
+    return redirect()->route('index');
+
+  } // adiciona o produto de $id ao addCarrinho
+
+  public function login(){
+
+    return view('login');
+
+  } // retorna tela de login
+
+  public function compra(){
+
+    return view('compra');
+
+  } // retorna tela de compra
+
+  public function processarPedido(Request $request){
+
+    $itens = Session::get('carrinho');
+
+    print_r($itens);
+
+  } // processa o pedido e retorna mensagem avisando se ele foi confirmado ou não
+
+  public function cadastro(){
+
+    return view('cadastrar');
+
+  } // retorna tela de cadastro
+
+  public function recuperarSenha(){
+
+    return view('recuperarSenha');
+
+  } // retorna tela de recuperar senha
 
 
 }

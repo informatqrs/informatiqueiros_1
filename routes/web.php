@@ -15,9 +15,9 @@ Route::group(['prefix' => 'admin'],function(){
 
   Route::get('home','AdminController@home')->middleware('checkAdmin')->name('admin.home');
   Route::post('pesquisar','AdminController@pesquisar')->middleware('checkAdmin')->name("admin.pesquisar");
-  Route::get('editar/{$categoria}/{$id}','AdminController@editar')->middleware('checkAdmin')->name("admin.editar");
-  Route::get('cadastrar/{$categoria}/{$id}','AdminController@cadastrar')->middleware('checkAdmin')->name("admin.cadastrar");
-  Route::get('deletar/{$categoria}/{$id}','AdminController@deletar')->middleware('checkAdmin')->name("admin.deletar");
+  Route::get('editar/{entidade}/{id}','AdminController@editar')->middleware('checkAdmin')->name("admin.editar");
+  Route::get('cadastrar/{entidade}','AdminController@cadastrar')->middleware('checkAdmin')->name("admin.cadastrar");
+  Route::get('deletar/{entidade}/{id}','AdminController@deletar')->middleware('checkAdmin')->name("admin.deletar");
   Route::post('confirmarCadastro','AdminCOntroller@confirmarCadastro')->middleware('checkAdmin')->name("admin.confirmarCadastro");
   Route::post('confirmarEdicao','AdminController@confirmarEdicao')->middleware('checkAdmin')->name("admin.confirmarEdicao");
   Route::post('confirmarDelecao','AdminController@confirmarDelecao')->middleware('checkAdmin')->name("admin.confirmarDelecao");
@@ -25,17 +25,14 @@ Route::group(['prefix' => 'admin'],function(){
 });
 
 
-Route::get('cadastro','ViewsController@cadastrar')->name('cadastro');
-
-Route::post('register','Auth\RegisterController@register')->name('register');
-
-Route::post('login','Auth\LoginController@login')->name('login');
-
-Route::get('admin','AdminController@login')->name('admin');
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('cadastro','ViewsController@cadastrar')->middleware('auth')->name('cadastro');
+Route::post('register','Auth\RegisterController@register')->middleware('auth')->name('register');
+Route::post('login','Auth\LoginController@login')->middleware('auth')->name('login');
+Route::get('login','ViewsController@login')->name('login.form');
+Route::get('admin','AdminController@login')->middleware('auth')->name('admin');
+Route::get('/','ViewsController@home')->name('index');
+Route::get('l/{categoria}','ViewsController@getProdutos')->name('produtos');
+Route::get('i/{id}','ViewsController@getProduto')->name('produto');
 
 Route::group(['prefix' => 'vestuario'],function(){
 
