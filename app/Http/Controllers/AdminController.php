@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Categoria;
+use App\Produto;
+use App\Pedido;
 
 class AdminController extends Controller
 {
@@ -15,9 +19,15 @@ class AdminController extends Controller
 
     public function home(){
 
-        return view('admin.home');
+        $admins = User:where('tipo',1)->orderBy('id');
+        $usuarios = User::where('tipo',0)->orderBy('id');
+        $produtos = Produto::all()->orderBy('id');
+        $pedidos = Pedido::all()->orderBy('id')
+        $categorias = Categorias::all()->orderBy('id');
 
-    } // retiorna a página principal do admin
+        return view('admin.home',['admins' => $admins,'usuarios' => $usuarios,'produtos' => $produtos,'pedidos' => $pedidos,'categorias' => $categorias]);
+
+    } // retorna a página principal do admin
 
     public function pesquisar(Request $request){
 
@@ -27,9 +37,8 @@ class AdminController extends Controller
 
     public function cadastrar($entidade){
 
-      $categorias = 
+      $categorias = Categoria::all();
       $usuarios = User::where('tipo',0);
-
       return view('admin.cadastro.'.$entidade);
 
 
