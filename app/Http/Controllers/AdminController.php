@@ -27,7 +27,7 @@ class AdminController extends Controller
 
     public function cadastrar($entidade){
 
-      $categorias
+      $categorias = 
       $usuarios = User::where('tipo',0);
 
       return view('admin.cadastro.'.$entidade);
