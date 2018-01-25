@@ -27,7 +27,10 @@ class AdminController extends Controller
 
     public function cadastrar($entidade){
 
-      return view('admin.cadastrar'.$entidade);
+      $categorias
+      $usuarios = User::where('tipo',0);
+
+      return view('admin.cadastro.'.$entidade);
 
 
     } // página de cadastro de uma entidade

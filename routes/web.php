@@ -27,9 +27,9 @@ Route::group(['prefix' => 'admin'],function(){
 
 Route::get('cadastro','ViewsController@cadastrar')->middleware('auth')->name('cadastro');
 Route::post('register','Auth\RegisterController@register')->middleware('auth')->name('register');
-Route::post('login','Auth\LoginController@login')->middleware('auth')->name('login');
+Route::post('login','Auth\LoginController@login')->name('login');
 Route::get('login','ViewsController@login')->name('login.form');
-Route::get('admin','AdminController@login')->middleware('auth')->name('admin');
+Route::get('admin','AdminController@login')->name('admin');
 Route::get('/','ViewsController@home')->name('index');
 Route::get('l/{categoria}','ViewsController@getProdutos')->name('produtos');
 Route::get('i/{id}','ViewsController@getProduto')->name('produto');

@@ -1,7 +1,7 @@
 <nav class="navbar bg-dark text-white sticky-top mb-3 navbar-expand-sm ">
   <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link" href="{{ route('admin') }}">Início</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ route('admin.cadastrar') }}">Cadastrar</a></li>
+      <!--<li class="nav-item"><a class="nav-link" href="">Cadastrar</a></li>-->
       <li class="nav-item"><a class="nav-link" href="{{ route('admin.logout') }}">Sair</a></li>
   </ul>
   <form class="form-inline d-inline-flex mx-auto" action="index.html" method="post">

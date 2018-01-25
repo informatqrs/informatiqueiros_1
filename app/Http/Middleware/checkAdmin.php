@@ -19,7 +19,8 @@ class checkAdmin
 
         if(Auth::check() && Auth::user()->tipo == 1){
 
-            return redirect()->route('admin.home');
+            return $next($request);
+            //return redirect()->route('admin.home');
 
         }else{
 
@@ -27,6 +28,5 @@ class checkAdmin
 
         }
 
-        return $next($request);
     }
 }
