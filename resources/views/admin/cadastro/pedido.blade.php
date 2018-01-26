@@ -11,6 +11,8 @@
       </div>
       <div class="card-body">
           <form class="form" action="index.html" method="post">
+            {{ csrf_field() }}
+            <input type="hidden" name="entidade" value="pedido">
             <label for="">Usuário requerente do pedido:</label><select class="" name="">
               @foreach($usuarios as $usuario)
                 <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>

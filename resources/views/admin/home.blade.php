@@ -17,7 +17,7 @@
         @endif
         <li class="list-group-item"><div class="row"><a href="#" class="col-sm-11 list-group-item-action h-100" data-toggle="collapse" data-target="#usuarios">Usuarios</a><a class="col" href="{{ route('admin.cadastrar',['entidade' => 'usuario']) }}"><span class="fa fa-plus text-success " style="font-size:20px;"></span></a></div></li>
         @if(isset($usuarios) && !$usuarios->isEmpty())
-        <div id="produtos" class="collapse bg-dark">
+        <div id="usuarios" class="collapse bg-dark">
           <ul class="list-group">
             @foreach($usuarios as $users)
               <li class="list-group-item bg-dark rounded-0"><a href="#">#{{ $users->id }} > {{ $users->name }}</a><a class="float-right ml-3" href="#"><span class="fa fa-trash" ></span></a><a class="float-right" href="#"><span class="fa fa-pencil"></span></a></li>
@@ -37,7 +37,7 @@
           @endif
           <li class="list-group-item"><div class="row"><a href="#" class="col-sm-11 list-group-item-action h-100" data-toggle="collapse" data-target="#categorias">Categorias</a><a class="col" href="{{ route('admin.cadastrar',['entidade' => 'categoria']) }}"><span class="fa fa-plus text-success " style="font-size:20px;"></span></a></div></li>
           @if(isset($categorias) && !$categorias->isEmpty())
-          <div id="produtos" class="collapse bg-dark">
+          <div id="categorias" class="collapse bg-dark">
             <ul class="list-group">
               @foreach($categorias as $cat)
                 <li class="list-group-item bg-dark rounded-0"><a href="#">#{{ $cat->id }} > {{ $cat->nome }}</a><a class="float-right ml-3" href="#"><span class="fa fa-trash" ></span></a><a class="float-right" href="#"><span class="fa fa-pencil"></span></a></li>

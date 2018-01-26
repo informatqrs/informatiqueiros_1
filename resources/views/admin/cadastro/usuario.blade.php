@@ -11,6 +11,8 @@
       </div>
       <div class="card-body">
           <form class="form" action="index.html" method="post">
+            {{ csrf_field() }}
+            <input type="hidden" name="entidade" value="usuario">
             <label for="">Tipo: </label>
             <select class="form-control mb-3" name="tipo">
                 <option value="0">Usuario</option>

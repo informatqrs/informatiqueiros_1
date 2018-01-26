@@ -19,11 +19,11 @@ class AdminController extends Controller
 
     public function home(){
 
-        $admins = User:where('tipo',1)->orderBy('id');
-        $usuarios = User::where('tipo',0)->orderBy('id');
-        $produtos = Produto::all()->orderBy('id');
-        $pedidos = Pedido::all()->orderBy('id')
-        $categorias = Categorias::all()->orderBy('id');
+        $admins = User::where('tipo',1)->orderBy('id')->get();
+        $usuarios = User::where('tipo',0)->orderBy('id')->get();
+        $produtos = Produto::orderBy('id')->get();
+        $pedidos = Pedido::orderBy('id')->get();
+        $categorias = Categoria::orderBy('id')->get();
 
         return view('admin.home',['admins' => $admins,'usuarios' => $usuarios,'produtos' => $produtos,'pedidos' => $pedidos,'categorias' => $categorias]);
 
@@ -31,7 +31,32 @@ class AdminController extends Controller
 
     public function pesquisar(Request $request){
 
-        ///
+        if($request->pesquisa != NULL){
+
+            $ids = explode(" ",$request->pesquisa);
+
+            $where = array();
+
+            foreach ($ids as $id) {
+
+              $where[] = ['id','=',$id];
+
+            }
+
+            $produtos = App\Produto::where($where);
+            $usuarios = App\User::where($where);
+            $admins = App\User::where($where);
+            $categorias = App\Categoria::where($where);
+            $pedidos = App\Pedido::where($where);
+
+            return redirect()->route('admin.home',['admins' => $admins,'usuarios' => $usuarios,'pedidos' => $pedidos,'produtos' => $produtos,'categorias' => $categorias]);
+
+
+        }else{
+
+            home();
+
+        }
 
     } // retorna entidades que possuam o $id
 
@@ -48,31 +73,182 @@ class AdminController extends Controller
 
         switch($request->entidade){
 
-            ///
+            case 'usuario':
+              $validar = $request->validate([
+                'name' => 'required|unique:users',
+                'email' => 'required|unique:users',
+                'password' => 'required|min:6|max:30|confirmed',
+                'tipo' => 'required',
+              ]);
+
+              $user = new App\User();
+
+              $user->name = $request->name;
+              $user->password = $request->password;
+              $user->email = $request->email;
+              $user->tipo = $request->tipo;
+
+              $user->save();
+
+              break;
+            case 'categoria':
+              $validar = $request->validate([
+                'nome' => 'required|unique:categorias',
+              ]);
+
+              $categoria = new App\Categoria();
+
+              $categoria->nome = $request->nome;
+              $cateogria->save();
+
+              break;
+            case 'pedido':
+              $validar = $request->validate([
+                'user_id' => 'required',
+                'valor' => 'required',
+                'itens' => 'required',
+              ]);
+
+              $pedido = new App\Pedido;
+
+              $pedido->user_id = Auth::user()->id;
+
+              $where = array();
+
+              foreach($request->itens as $item){
+
+                  $where[] = ['id','=',$item];
+
+              }
+
+              $pedido->valor = Produto::where('id','=',$where)->sum('valor');
+
+              $pedido->save();
+
+              foreach ($request->itens as $item) {
+                $pp = new App\PedidosProdutos();
+
+                $pp->pedido_id = $pedido->id();
+                $pp->produto_id = $item;
+
+                $pp->save();
+
+              }
+              break;
+            case 'produto':
+              $validar = $request->validate([
+                'nome' => 'required|unique:users',
+                'categoria' => 'required|exists:categorias,nome',
+                'valor' => 'required',
+              ]);
+
+              $produto = new App\Produto();
+
+              $produto->nome = $request->nomeproduto;
+              $produto->categoria = $request->categoria;
+              $produto->valor = $request->valor;
+
+              $produto->save();
+              break;
 
         }
+
+        home();
 
     } // efetua o cadastro de uma entidade
 
     public function confirmarEdicao(Request $request){
 
-        $request->validate([
+      switch($request->entidade){
 
-          ///
+          case 'usuario':
+            $validar = $request->validate([
+              'name' => 'required|unique:users',
+              'email' => 'required|unique:users',
+              'password' => 'required|min:6|max:30|confirmed',
+              'tipo' => 'required',
+            ]);
 
-        ]);
+            $user = new App\User();
+
+            $user->name = $request->name;
+            $user->password = $request->password;
+            $user->email = $request->email;
+            $user->tipo = $request->tipo;
+
+            $user->save();
+
+            break;
+          case 'categoria':
+            $validar = $request->validate([
+              'nome' => 'required|unique:categorias',
+            ]);
+
+            $categoria = new App\Categoria();
+
+            $categoria->nome = $request->nome;
+            $cateogria->save();
+
+            break;
+          case 'pedido':
+            $validar = $request->validate([
+              'user_id' => 'required',
+              'valor' => 'required',
+              'itens' => 'required',
+            ]);
+
+            $pedido = new App\Pedido;
+
+            $pedido->user_id = Auth::user()->id;
+
+            $where = array();
+
+            foreach($request->itens as $item){
+
+                $where[] = ['id','=',$item];
+
+            }
+
+            $pedido->valor = Produto::where('id','=',$where)->sum('valor');
+
+            $pedido->save();
+
+            foreach ($request->itens as $item) {
+              $pp = new App\PedidosProdutos();
+
+              $pp->pedido_id = $pedido->id();
+              $pp->produto_id = $item;
+
+              $pp->save();
+
+            }
+            break;
+          case 'produto':
+            $validar = $request->validate([
+              'nome' => 'required|unique:users',
+              'categoria' => 'required|exists:categorias,nome',
+              'valor' => 'required',
+            ]);
+
+            $produto = new App\Produto();
+
+            $produto->nome = $request->nomeproduto;
+            $produto->categoria = $request->categoria;
+            $produto->valor = $request->valor;
+
+            $produto->save();
+            break;
+
+      }
+
+      home();
 
 
     } // efetua a edição da entidade
 
     public function editar($entidade,$id){
 
-      switch($entidade){
-
-        ///
-
-
-      }
+      return view('admin.');
 
     } // página de edição de uma entidade da tabela
 
@@ -80,7 +256,21 @@ class AdminController extends Controller
 
       switch($entidade){
 
-          ///
+        case 'admin':
+          App\User::where('id','=',$id)->delete();
+          break;
+        case 'usuario':
+          App\User::where('id','=',$id)->delete();
+          break;
+        case 'categoria':
+          App\Categoria::where('id','=',$id)->delete();
+          break;
+        case 'pedido':
+          App\Pedido::where('id','=',$id)->delete();
+          break;
+        case 'produto':
+          App\Produto::where('id','=',$id)->delete();
+          break;
 
       }
 

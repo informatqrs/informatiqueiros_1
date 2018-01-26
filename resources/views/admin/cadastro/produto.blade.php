@@ -11,6 +11,8 @@
       </div>
       <div class="card-body">
           <form class="form" action="index.html" method="post">
+            {{ csrf_field() }}
+            <input type="hidden" name="entidade" value="produto">
             <input class="form-control mb-3" type="text" name="nome" value="" placeholder="Digite o nome da categoria" autocomplete="off">
             <select class="form-control mb-3" name="categoria">
               @foreach($categorias as $cat)
