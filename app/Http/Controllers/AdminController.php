@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace  App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Categoria;
-use App\Produto;
-use App\Pedido;
+use  App\User;
+use  App\Categoria;
+use  App\Produto;
+use  App\Pedido;
 
 class AdminController extends Controller
 {
@@ -43,11 +43,11 @@ class AdminController extends Controller
 
             }
 
-            $produtos = App\Produto::where($where);
-            $usuarios = App\User::where($where);
-            $admins = App\User::where($where);
-            $categorias = App\Categoria::where($where);
-            $pedidos = App\Pedido::where($where);
+            $produtos = Produto::where($where);
+            $usuarios = User::where($where);
+            $admins = User::where($where);
+            $categorias = Categoria::where($where);
+            $pedidos = Pedido::where($where);
 
             return redirect()->route('admin.home',['admins' => $admins,'usuarios' => $usuarios,'pedidos' => $pedidos,'produtos' => $produtos,'categorias' => $categorias]);
 
@@ -81,7 +81,7 @@ class AdminController extends Controller
                 'tipo' => 'required',
               ]);
 
-              $user = new App\User();
+              $user = new User;
 
               $user->name = $request->name;
               $user->password = $request->password;
@@ -96,10 +96,10 @@ class AdminController extends Controller
                 'nome' => 'required|unique:categorias',
               ]);
 
-              $categoria = new App\Categoria();
+              $categoria = new  Categoria;
 
               $categoria->nome = $request->nome;
-              $cateogria->save();
+              $categoria->save();
 
               break;
             case 'pedido':
@@ -109,7 +109,7 @@ class AdminController extends Controller
                 'itens' => 'required',
               ]);
 
-              $pedido = new App\Pedido;
+              $pedido = new  Pedido;
 
               $pedido->user_id = Auth::user()->id;
 
@@ -126,7 +126,7 @@ class AdminController extends Controller
               $pedido->save();
 
               foreach ($request->itens as $item) {
-                $pp = new App\PedidosProdutos();
+                $pp = new  PedidosProdutos;
 
                 $pp->pedido_id = $pedido->id();
                 $pp->produto_id = $item;
@@ -142,7 +142,7 @@ class AdminController extends Controller
                 'valor' => 'required',
               ]);
 
-              $produto = new App\Produto();
+              $produto = new  Produto;
 
               $produto->nome = $request->nomeproduto;
               $produto->categoria = $request->categoria;
@@ -153,7 +153,7 @@ class AdminController extends Controller
 
         }
 
-        home();
+        return redirect()->route('admin.home');
 
     } // efetua o cadastro de uma entidade
 
@@ -169,7 +169,7 @@ class AdminController extends Controller
               'tipo' => 'required',
             ]);
 
-            $user = new App\User();
+            $user = new  User;
 
             $user->name = $request->name;
             $user->password = $request->password;
@@ -184,10 +184,10 @@ class AdminController extends Controller
               'nome' => 'required|unique:categorias',
             ]);
 
-            $categoria = new App\Categoria();
+            $categoria = new  Categoria;
 
             $categoria->nome = $request->nome;
-            $cateogria->save();
+            $categoria->save();
 
             break;
           case 'pedido':
@@ -197,7 +197,7 @@ class AdminController extends Controller
               'itens' => 'required',
             ]);
 
-            $pedido = new App\Pedido;
+            $pedido = new  Pedido;
 
             $pedido->user_id = Auth::user()->id;
 
@@ -214,7 +214,7 @@ class AdminController extends Controller
             $pedido->save();
 
             foreach ($request->itens as $item) {
-              $pp = new App\PedidosProdutos();
+              $pp = new  PedidosProdutos;
 
               $pp->pedido_id = $pedido->id();
               $pp->produto_id = $item;
@@ -230,7 +230,7 @@ class AdminController extends Controller
               'valor' => 'required',
             ]);
 
-            $produto = new App\Produto();
+            $produto = new  Produto;
 
             $produto->nome = $request->nomeproduto;
             $produto->categoria = $request->categoria;
@@ -241,7 +241,7 @@ class AdminController extends Controller
 
       }
 
-      home();
+      return redirect()->route('admin.home');
 
 
     } // efetua a edição da entidade
@@ -257,19 +257,19 @@ class AdminController extends Controller
       switch($entidade){
 
         case 'admin':
-          App\User::where('id','=',$id)->delete();
+           User::where('id','=',$id)->delete();
           break;
         case 'usuario':
-          App\User::where('id','=',$id)->delete();
+           User::where('id','=',$id)->delete();
           break;
         case 'categoria':
-          App\Categoria::where('id','=',$id)->delete();
+           Categoria::where('id','=',$id)->delete();
           break;
         case 'pedido':
-          App\Pedido::where('id','=',$id)->delete();
+           Pedido::where('id','=',$id)->delete();
           break;
         case 'produto':
-          App\Produto::where('id','=',$id)->delete();
+           Produto::where('id','=',$id)->delete();
           break;
 
       }
