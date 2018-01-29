@@ -17,6 +17,7 @@ class checkAdmin
     public function handle($request, Closure $next)
     {
 
+
         if(Auth::check() && Auth::user()->tipo == 1){
 
             return $next($request);

@@ -10,16 +10,16 @@
           <h3>Adicionar produto</h3>
       </div>
       <div class="card-body">
-          <form class="form" action="index.html" method="post">
+          <form class="form" action="{{ route('admin.confirmarCadastro') }}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="entidade" value="produto">
-            <input class="form-control mb-3" type="text" name="nome" value="" placeholder="Digite o nome da categoria" autocomplete="off">
+            <input class="form-control mb-3" type="text" name="nome" value="" placeholder="Digite o nome do produto" autocomplete="off">
             <select class="form-control mb-3" name="categoria">
               @foreach($categorias as $cat)
                 <option value="{{ $cat->nome }}">{{ $cat->nome }}</option>
               @endforeach
             </select>
-            <input class="form-control mb-3" type="text" name="" value="">
+            <input class="form-control mb-3" type="text" name="valor" value="">
             <button class="btn btn-primary"  type="submit" name="button">Cadastrar</button>
           </form>
       </div>

@@ -1,3 +1,36 @@
+/*
+
+palavras-chave:
+
+formulário-dinâmico:{
+
+classe: formulario-dinamico,
+classe: item,
+classe: adicionar-item,
+classe: remover-item
+
+
+}
+
+
+animações:{
+
+classe: mudar-direcao-seta
+
+}
+
+
+pop-ups:{
+
+  classe: confirmar-delecao
+
+}
+
+
+
+
+*/
+
 function add(){
 
   var doc = document.getElementByClass('FD');

@@ -42,11 +42,11 @@ class LoginController extends Controller
 
       if(Auth::user()->tipo == 0){
 
-        return '/';
+        return route('index');
 
       }else if( Auth::user()->tipo == 1){
 
-        return '/admin';
+        return route('admin.home');
 
       }
 
