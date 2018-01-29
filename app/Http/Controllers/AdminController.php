@@ -7,6 +7,7 @@ use  App\User;
 use  App\Categoria;
 use  App\Produto;
 use  App\Pedido;
+use App\PedidosProdutos;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -80,7 +81,7 @@ class AdminController extends Controller
     public function cadastrar($entidade){
 
       $categorias = Categoria::all();
-      $usuarios = User::where('tipo',0);
+      $usuarios = User::where('tipo',0)->get();
       return view('admin.cadastro.'.$entidade,['categorias' => $categorias, 'usuarios' => $usuarios]);
 
 
@@ -122,35 +123,43 @@ class AdminController extends Controller
             case 'pedido':
               $validar = $request->validate([
                 'user_id' => 'required',
-                'valor' => 'required',
                 'itens' => 'required',
               ]);
 
               $pedido = new  Pedido;
 
-              $pedido->user_id = Auth::user()->id;
+              $pedido->user_id = $request->user_id;
 
               $where = array();
 
               foreach($request->itens as $item){
 
-                  $where[] = ['id','=',$item];
+                  $where[] = array('id','=',$item);
 
               }
 
-              $pedido->valor = Produto::where('id','=',$where)->sum('valor');
+              print_r($request->itens);
 
+              $pedido->valor = Produto::whereRaw($where[0])->get();
+
+              foreach ($pedido->valor as $valor) {
+                print_r($valor);
+              }
+
+              //print_r(count())
+              //print_r($pedido->valor);
+              /*
               $pedido->save();
 
               foreach ($request->itens as $item) {
-                $pp = new  PedidosProdutos;
+                $pp = new PedidosProdutos;
 
-                $pp->pedido_id = $pedido->id();
+                $pp->pedido_id = $pedido->id;
                 $pp->produto_id = $item;
 
                 $pp->save();
 
-              }
+              }*/
               break;
             case 'produto':
               $validar = $request->validate([
@@ -170,7 +179,7 @@ class AdminController extends Controller
 
         }
 
-        return redirect()->route('admin.home');
+        //return redirect()->route('admin.home');
 
     } // efetua o cadastro de uma entidade
 

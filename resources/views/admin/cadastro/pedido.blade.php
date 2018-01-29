@@ -13,16 +13,17 @@
           <form class="form" action="{{ route('admin.confirmarCadastro') }}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="entidade" value="pedido">
-            <label for="">Usuário requerente do pedido:</label><select class="" name="">
+            <label for="">Usuário requerente do pedido:</label><select class="form-control" name="user_id">
               @foreach($usuarios as $usuario)
                 <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
               @endforeach
-            </select>
-            <label for="">Itens: </label><button class="btn btn-success fd-add" type="button" name="button">Novo item</button><button class="btn btn-danger fd-rm" type="button" name="button">Remover item</button><br>
-            <div class="FD">
+            </select><br>
+            <label for="">Itens:</label><br><button class="btn btn-success fd-adicionar mb-3" type="button" name="button">Novo item</button><button class="btn btn-danger fd-remover ml-3 mb-3" type="button" name="button">Remover item</button><br>
+            <hr>
+            <div class="fd">
               <input class="form-control mb-3" type="text" name="itens[]" value="" placeholder="Item">
             </div>
-            <input class="form-control mb-3" type="text" name="valor" value="" placeholder="Valor do pedido" autocomplete="off">
+            <hr>
             <button class="btn btn-primary"  type="submit" name="button">Cadastrar</button>
           </form>
       </div>
