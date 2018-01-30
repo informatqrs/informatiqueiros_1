@@ -90,9 +90,48 @@ $( document ).ready(function(){
 
   } // remove campo de input do formulário
 
+  function mudaTravas(){
+
+    if(this.classList.contains('liberar')){
+
+        this.classList.remove('liberar');
+
+        this.classList.remove('btn-primary');
+
+        this.classList.add('btn-danger');
+
+        this.classList.remove('fa-unlock');
+
+        this.classList.add('fa-lock');
+
+        var campo = document.getElementById('campo-'+this.id);
+
+        campo.disabled = false;
+
+    }else{
+
+      this.classList.remove('btn-danger');
+
+      this.classList.add('btn-primary');
+
+      this.classList.add('liberar');
+
+      this.classList.remove('fa-lock');
+
+      this.classList.add('fa-unlock');
+
+      var campo = document.getElementById('campo-'+this.id);
+
+      campo.disabled = true;
+
+    }
+
+  }
+
   var botoes = document.getElementsByClassName('flex');
   var adicionar = document.getElementsByClassName('fd-adicionar')[0];
   var remover = document.getElementsByClassName('fd-remover')[0];
+  var travas = document.getElementsByClassName('trava');
 
   if(adicionar != null && remover != null){
     adicionar.addEventListener("click",adicionarCampo);
@@ -102,6 +141,12 @@ $( document ).ready(function(){
   for(var i = 0; botoes != null && i < botoes.length; i++){
 
       botoes[i].addEventListener("click",mudarSentido);
+
+  }
+
+  for(var i = 0; travas != null && i < travas.length; i++){
+
+      travas[i].addEventListener("click",mudaTravas);
 
   }
 

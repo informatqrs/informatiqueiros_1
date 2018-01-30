@@ -21,7 +21,7 @@
             <label for="">Itens:</label><br><button class="btn btn-success fd-adicionar mb-3" type="button" name="button">Novo item</button><button class="btn btn-danger fd-remover ml-3 mb-3" type="button" name="button">Remover item</button><br>
             <hr>
             <div class="fd">
-              <input class="form-control mb-3" type="text" name="itens[]" value="" placeholder="Item">
+              <input class="form-control mb-3" type="text" name="itens[]" value="" placeholder="Digite o id do produto:">
             </div>
             <hr>
             <button class="btn btn-primary"  type="submit" name="button">Cadastrar</button>

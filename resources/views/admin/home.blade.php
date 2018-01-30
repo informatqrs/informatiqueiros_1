@@ -74,7 +74,7 @@
           <div id="pedidos" class="collapse bg-dark">
             <ul class="list-group">
               @foreach($pedidos as $pedido)
-                <li class="list-group-item bg-dark rounded-0"><a href="{{ route('admin.verItem',['entidade' => 'pedido', 'id' => $pedido->id]) }}">#{{ $pedido->id }} > {{ $pedido->nome }}</a></li>
+                <li class="list-group-item bg-dark rounded-0"><a href="{{ route('admin.verItem',['entidade' => 'pedido', 'id' => $pedido->id]) }}">#{{ $pedido->id }} > {{ $pedido->valor }}</a></li>
               @endforeach
             </ul>
           </div>

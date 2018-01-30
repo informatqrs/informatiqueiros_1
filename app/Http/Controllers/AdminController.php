@@ -9,6 +9,7 @@ use  App\Produto;
 use  App\Pedido;
 use App\PedidosProdutos;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -130,25 +131,14 @@ class AdminController extends Controller
 
               $pedido->user_id = $request->user_id;
 
-              $where = array();
+              $pedido->valor = 0;
 
               foreach($request->itens as $item){
 
-                  $where[] = array('id','=',$item);
+                  $pedido->valor += Produto::where('id','=',$item)->get()->first()->valor;
 
               }
 
-              print_r($request->itens);
-
-              $pedido->valor = Produto::whereRaw($where[0])->get();
-
-              foreach ($pedido->valor as $valor) {
-                print_r($valor);
-              }
-
-              //print_r(count())
-              //print_r($pedido->valor);
-              /*
               $pedido->save();
 
               foreach ($request->itens as $item) {
@@ -159,7 +149,7 @@ class AdminController extends Controller
 
                 $pp->save();
 
-              }*/
+              }
               break;
             case 'produto':
               $validar = $request->validate([
@@ -179,7 +169,7 @@ class AdminController extends Controller
 
         }
 
-        //return redirect()->route('admin.home');
+        return redirect()->route('admin.home');
 
     } // efetua o cadastro de uma entidade
 
@@ -288,7 +278,19 @@ class AdminController extends Controller
           break;
         case 'pedido':
           $item = Pedido::where('id',$id)->get()->first();
-          return view('admin.editar.'.$entidade,['item' => $item, 'usuarios' => $usuarios, 'categorias' => $categorias]);
+          $pp = PedidosProdutos::where('pedido_id',$item->id)->get();
+          $query = "SELECT * FROM produtos WHERE id = ?";
+          $values = array();
+          for($i = 0;$i < count($pp)-1; $i++){
+
+              $query = $query." OR id = ?";
+              $values[] = $pp[$i]->produto_id;
+          }
+          $values[] = $pp[count($pp)-1]->produto_id;
+
+          $produtos = DB::select($query,$values);
+
+          return view('admin.editar.'.$entidade,['item' => $item, 'usuarios' => $usuarios, 'categorias' => $categorias, 'produtos' => $produtos]);
           break;
         case 'categoria':
           $item = Categoria::where('id',$id)->get()->first();
@@ -332,6 +334,21 @@ class AdminController extends Controller
         case 'categoria':
           $item = Categoria::where('id',$id)->get()->first();
           return view('admin.itens.'.$entidade,['item' => $item]);
+          break;
+        case 'pedido':
+          $item = Pedido::where('id',$id)->get()->first();
+          $pp = PedidosProdutos::where('pedido_id',$item->id)->get();
+          $query = 'SELECT * FROM produtos WHERE id = ?';
+          $values = array();
+          for($i = 0; $i < count($pp)-1 ; $i++){
+
+            $query = $query.' OR id = ?';
+            $values[] = $pp[$i]->produto_id;
+
+          }
+          $values[] = $pp[count($pp)-1]->produto_id;
+          $produtos = DB::select($query,array_values($values));
+          return view('admin.itens.'.$entidade,['item' => $item, 'produtos' => $produtos]);
           break;
       }
 
